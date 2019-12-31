@@ -51,6 +51,13 @@
 			</exclusions>
 		</dependency>
 
+		<!-- Only single dependency required to enable thymeleaf as a template 
+			engine. It will configure ViewResolver, Template engine and template resolver -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
 		<!-- We need to explicitly define which database we want to use, and this 
 			is not part of JPA starter and also does not make sense there -->
 		<dependency>
@@ -82,6 +89,11 @@
 		<!-- <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
 			<version>2.10.0</version> </dependency> -->
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
