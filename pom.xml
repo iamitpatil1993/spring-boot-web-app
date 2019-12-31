@@ -30,6 +30,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-jdbc</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- Only one starter dependency required for web support, it pulls, web, 
@@ -37,6 +43,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-validation</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- We need to explicitly define which database we want to use, and this 
