@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -28,6 +29,11 @@ public class BookService implements InitializingBean {
 	@Transactional(readOnly = true)
 	public List<Book> getAllByReader(final String reader) {
 		return readingListRepository.findByReader(reader);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Book addBookToReadingList(final Book book) {
+		return readingListRepository.save(book);
 	}
 
 	@Override
