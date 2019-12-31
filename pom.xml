@@ -70,6 +70,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!-- If we want to override version of transitive depedency in any starter 
+			dependency, This how we can override transitive dependency in spring-boot-starter-web -->
+		<!-- Maven always favors the closest dependency, meaning that because you’ve 
+			expressed this dependency in your project’s build, it will be favored over 
+			the one that’s transi- tively referred to by another dependency -->
+		<!-- We should override starter transitive dependency version in critical 
+			cases only. Because current versions in starter are well test to match version 
+			of others -->
+		<!-- <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
+			<version>2.10.0</version> </dependency> -->
+
 	</dependencies>
 
 	<build>
