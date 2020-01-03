@@ -119,3 +119,4 @@ atlassian-ide-plugin.xml
 .factorypath
 
 *.sh
+.sts4-cache/
