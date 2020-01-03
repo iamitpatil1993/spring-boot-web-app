@@ -94,6 +94,25 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- spring-boot-devtools provides -->
+		<!-- 1. Provides Property defaults, for example disables caching of thymelead 
+			templates so that they get loaded when changed in source code without server 
+			restart -->
+		<!-- 2. Provides Automatic restart of application when java source/property 
+			files or any resource that goes into classpath. -->
+		<!-- 3. Provides Live reaload, not only changes get reflected without server 
+			restart but also, when any thymeleaf template or static resource is changed, 
+			browser get refreshed automatically, we do not need to manually, so no need 
+			of manual refresh. For this spring starts live reload embedded server and 
+			we need to add LiveReload plugin to browser and enable it. -->
+		<!-- 4. Enables debugging of remove running spring boot application. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>
