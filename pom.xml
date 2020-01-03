@@ -113,6 +113,16 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- Enables spring security using-autoconfiguration -->
+		<!-- By default it enables basic authentication where username is 'user' 
+			and password is get auto-generated at each server startup, and get looged 
+			to console -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
