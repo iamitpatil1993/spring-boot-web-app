@@ -3,7 +3,18 @@
 <title>Reading List</title>
 <link rel="stylesheet" th:href="@{/style.css}"></link>
 </head>
+<h3>Add a book</h3>
 <body>
+	<form method="POST" action="#" th:action="@{/reading-list}">
+		<label for="title">Title:</label> <input type="text" name="title"
+			size="50"></input><br /> <label for="author">Author:</label> <input
+			type="text" name="author" size="50"></input><br /> <label for="isbn">ISBN:</label>
+		<input type="text" name="isbn" size="15"></input><br /> <label
+			for="description">Description:</label><br />
+		<textarea name="description" cols="80" rows="5">
+</textarea>
+		<br /> <input type="submit"></input>
+	</form>
 	<h2>Your Reading List</h2>
 	<div th:unless="${#lists.isEmpty(books)}">
 		<dl th:each="book : ${books}">
@@ -23,17 +34,6 @@
 		<p>You have no books in your book list</p>
 	</div>
 	<hr />
-	<h3>Add a book</h3>
-	<form method="POST">
-		<label for="title">Title:</label> <input type="text" name="title"
-			size="50"></input><br /> <label for="author">Author:</label> <input
-			type="text" name="author" size="50"></input><br /> <label for="isbn">ISBN:</label>
-		<input type="text" name="isbn" size="15"></input><br /> <label
-			for="description">Description:</label><br />
-		<textarea name="description" cols="80" rows="5">
-</textarea>
-		<br /> <input type="submit"></input>
-	</form>
 </body>
 </body>
 </html>
