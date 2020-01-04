@@ -26,7 +26,6 @@ import com.example.spring.boot.security.SecurityRole;
  *
  */
 @SuppressWarnings("deprecation")
-@Configuration
 @EnableWebSecurity
 public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
