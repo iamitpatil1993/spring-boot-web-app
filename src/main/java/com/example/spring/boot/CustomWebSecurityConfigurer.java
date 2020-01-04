@@ -34,6 +34,8 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/").hasRole(SecurityRole.READER.toString()).and().formLogin().and().csrf()
 				.disable();
+		// we need to add this to fix h2-console not working issue, as per https://stackoverflow.com/questions/53395200/h2-console-is-not-showing-in-browser
+		http.headers().frameOptions().disable();
 	}
 
 	/**
