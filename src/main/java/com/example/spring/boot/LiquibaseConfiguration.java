@@ -3,7 +3,6 @@ package com.example.spring.boot;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
 
@@ -14,7 +13,7 @@ import liquibase.integration.spring.SpringLiquibase;
  * @author amipatil
  *
  */
-@Configuration
+//@Configuration // We do not need this anymore, spring boot will auto-configure liquibase based on liquibase in classpath
 public class LiquibaseConfiguration {
 
 	@Bean
