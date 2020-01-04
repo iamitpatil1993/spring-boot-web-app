@@ -1,5 +1,8 @@
 package com.example.spring.boot;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -27,13 +30,16 @@ import com.example.spring.boot.security.SecurityRole;
 @EnableWebSecurity
 public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+
 	/**
 	 * Enable formLogin and make authentication mandatory for all urls.
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/").hasRole(SecurityRole.READER.toString()).and().formLogin().and().csrf()
-				.disable();
+		.disable();
 		// we need to add this to fix h2-console not working issue, as per https://stackoverflow.com/questions/53395200/h2-console-is-not-showing-in-browser
 		http.headers().frameOptions().disable();
 	}
@@ -44,8 +50,10 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("user")
-				.password("password").roles(SecurityRole.READER.toString());
+		// configure JDBC based dataSource to use RDMS as user details store.
+		auth
+		.jdbcAuthentication().dataSource(dataSource) // use daatasource to get user details
+		.passwordEncoder(NoOpPasswordEncoder.getInstance()); // need to configure passwordEncoder as well.
 	}
 
 }
