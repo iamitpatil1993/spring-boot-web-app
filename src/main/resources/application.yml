@@ -16,4 +16,11 @@ spring:
     banner-mode: off
   thymeleaf:
     cache: false
-    
+
+logging:
+  level:
+    root: info
+    liquibase.executor: error
+  file:
+    path: /
+    name: application.logs
