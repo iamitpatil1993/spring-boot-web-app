@@ -1,0 +1,17 @@
+# Unlike yaml file helps us to group properties of similar types are single place.
+# Since this file is at root of classpath and there is application.properties file in config package, spring will give precedence
+# to config.application.properties and will ignore this file.
+# NOTE: Spring do not completely ignore file, rahter if same property exists in config.application.properties and this file, spring boot will give precedence to file in config package.
+# IF there is no propery in config.application.properties, then property defiened here will add up or contribue to application properties. 
+
+spring:
+  h2:
+    console:
+      enabled: true
+      
+  liquibase:
+    change-log: classpath:db/liquibase-changeLog.xml
+    
+  main:
+    banner-mode: off
+    
