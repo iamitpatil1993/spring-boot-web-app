@@ -17,6 +17,9 @@ spring:
   thymeleaf:
     cache: false
 
+# If we want full control over logging configurations, then we can remove all this configuration from here and provide
+# logback.xml at root of classpath, spring will automatically use it. But I think spring boot's log format is better,
+# so even if you want to customize, better use spring's default logging format
 logging:
   level:
     root: info
