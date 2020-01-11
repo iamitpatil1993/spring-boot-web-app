@@ -2,14 +2,14 @@
 --changeset amipatil:202001040901
 CREATE TABLE users
 (
-   username varchar_ignorecase (50) NOT null primary key,
-   password varchar_ignorecase (50) NOT null,
+   username varchar (50) NOT null primary key,
+   password varchar (50) NOT null,
    enabled boolean NOT null
 );
 CREATE TABLE authorities
 (
-   username varchar_ignorecase (50) NOT null,
-   authority varchar_ignorecase (50) NOT null,
+   username varchar (50) NOT null,
+   authority varchar (50) NOT null,
    cONstraint fk_authorities_users foreign key (username) references users (username)
 );
 CREATE unique INDEX ix_auth_username ON authorities
@@ -31,10 +31,13 @@ CREATE TABLE book
    title varchar (255),
    constraint fk_book_users foreign key (reader) references users (username)
 );
--- In auto mode, hibernate use sequence with H2 database with name 'hibernate_sequence'
-CREATE SEQUENCE hibernate_sequence start with 1 increment by 1 nocycle;
+
 -- rollback DROP INDEX ix_auth_username ON authorities;
 -- rollback DROP TABLE authorities;
 -- rollback DROP TABLE users;
--- rollback DROP TABLE  book ;
+-- rollback DROP TABLE  book 
+
+--changeset amipatil:202001100901 dbms:h2
+-- In auto mode, hibernate use sequence with H2 database with name 'hibernate_sequence'
+CREATE SEQUENCE hibernate_sequence start with 1 increment by 1 nocycle;
 -- rollback DROP SEQUENCE hibernate_sequence;

@@ -3,6 +3,10 @@
 
 # Log file
 *.log
+*.logs
+
+
+
 
 # BlueJ files
 *.ctxt
@@ -120,3 +124,4 @@ atlassian-ide-plugin.xml
 
 *.sh
 .sts4-cache/
+*.gz
