@@ -12,7 +12,7 @@ import lombok.Setter;
  *
  */
 @Component
-@ConfigurationProperties(prefix = "custom")
+@ConfigurationProperties(prefix = "custom") // NOTE: prefix are optional and we can remove them to map non-hierarchical/flat properties
 @Getter
 @Setter
 public class CustomPropertyConfig {
