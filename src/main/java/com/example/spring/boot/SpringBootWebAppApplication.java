@@ -2,6 +2,7 @@ package com.example.spring.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import com.example.spring.boot.config.property.ConstructorBasedAcmeConfigProperties;
@@ -26,6 +27,7 @@ import com.example.spring.boot.config.property.ConstructorBasedAcmeConfigPropert
 																		// not need to enable it explicitly. If we are
 																		// not using auto-config at all then we will
 																		// have to use it
+@ConfigurationPropertiesScan // scans classes annotated with ConfigurationProperties starting from this package, so we do not need to list them in above EnableConfigurationProperties annotation 
 public class SpringBootWebAppApplication {
 
 	public static void main(String[] args) {
