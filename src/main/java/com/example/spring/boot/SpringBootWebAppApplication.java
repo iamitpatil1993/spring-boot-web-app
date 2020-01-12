@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Main Bootstrap and configuration class, which act as a starting
  * point/launcher of application.
  * 
- * This classes defined as a 'start-class' in Maifest.mf, where Launcher/main class of application is JarLauncher/WarLauncher. Check manifest.mf
+ * This classes defined as a 'start-class' in Maifest.mf, where Launcher/main
+ * class of application is JarLauncher/WarLauncher. Check manifest.mf
  *
  * 
  * @author amipatil
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication // This enables ComponentScan (from this package), auto-configuration and
 						// configuration
+//@EnableConfigurationProperties  In order to use @ConfigurationProperties in application, we need to enable it using this config annotation, but it's already enabled in auto-config classes in spring, so we do not need to enable it explicitly. If we are not using auto-config at all then we will have to use it 
 public class SpringBootWebAppApplication {
 
 	public static void main(String[] args) {
