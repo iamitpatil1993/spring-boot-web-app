@@ -1,0 +1,27 @@
+# for prod profile use mysql database over in-memory H2
+spring:
+  datasource:
+    password: asdf1234
+    url: jdbc:mysql://localhost:3306/spring_boot_web_app_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# Disable h2-console for prod  
+  h2:
+    console:
+      enabled: false   
+      
+# change log level to error for prod profile, NOTE: Since we are not overriding file name, file name property will be used from properties.yml
+logging:
+  level:
+    root: error
+    liquibase.executor: error
+  
+# disable all other actuator endpoints and allow only loggers, so that we can change logs level at runtime.
+management:
+  endpoints:
+    web:
+      exposure:
+         include: "loggers"      
