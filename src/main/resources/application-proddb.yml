@@ -1,0 +1,10 @@
+# We wanted to create separate profiles for database, so this is proddb profile specific database properties
+# for prod profile use mysql database over in-memory H2
+spring:
+  datasource:
+    password: asdf1234
+    url: jdbc:mysql://localhost:3306/spring_boot_web_app_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update

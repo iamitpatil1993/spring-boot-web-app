@@ -1,13 +1,9 @@
 # for prod profile use mysql database over in-memory H2
 spring:
-  datasource:
-    password: asdf1234
-    url: jdbc:mysql://localhost:3306/spring_boot_web_app_db
-    username: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-
+ # When can unconditionally include other profiles as well, below property will include proddb profile when prod profile is active, here results are actually same
+  profiles:
+    include: 
+      - proddb
 # Disable h2-console for prod  
   h2:
     console:
@@ -24,4 +20,16 @@ management:
   endpoints:
     web:
       exposure:
-         include: "loggers"      
+         include: "loggers"
+         
+acme:
+  enabled: false
+  remote-address: 192.168.122
+  security:
+    username: amipatil
+    password: asdf1245
+    # arrays/list can be comma separated as -> roles: USER,ADMIN
+    roles:
+      - USER
+      - ADMIN
+      - SPITTLE
