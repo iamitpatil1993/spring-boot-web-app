@@ -22,9 +22,8 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-
 	<dependencies>
-		<!-- Only one dependency required to support and configure (auto) JPA, 
+		<!-- Only one dependency required to support and configure (auto) JPA,
 			it transitively fetch hibernate-core as a default JPA implementation -->
 		<!-- It takes version from parent project -->
 		<dependency>
@@ -121,6 +120,12 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- This automatically enables spring actuator and adds REST endpoints-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
 

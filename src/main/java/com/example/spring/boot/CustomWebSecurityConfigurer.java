@@ -3,7 +3,6 @@ package com.example.spring.boot;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +26,6 @@ import com.example.spring.boot.security.SecurityRole;
  */
 @SuppressWarnings("deprecation")
 @EnableWebSecurity
-@Profile(value = {"prod"})
 public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Autowired
