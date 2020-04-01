@@ -4,9 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController // This can be be normal Controller as well, in which case we need to return
+//@RestController // This can be be normal Controller as well, in which case we need to return
 				// View/ModelAndView or view name string
 public class CustomErrorController implements ErrorController {
 
