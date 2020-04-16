@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping(path = "/file/download")
+@Slf4j
 public class FileDownloadController {
 
 	private static final int STREAM_BUFFER_SIZE = 100;
@@ -76,7 +79,12 @@ public class FileDownloadController {
 		response.setContentType(Files.probeContentType(path));
 		response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "inlike; filename=" + path.getFileName().toString());
 
+		log.info("Request Handling thread :: {}, This is Servlet container thread for Http Request Handling",
+				Thread.currentThread().getName());
+
 		return outputStream -> {
+			log.info("Stream Handling thread, This will be from AsyncTaskExecutor :: {}",
+					Thread.currentThread().getName());
 			int bytesRead;
 			byte[] bytes = new byte[STREAM_BUFFER_SIZE];
 			try (final InputStream inputStream = new FileInputStream(filePath)) {
@@ -85,6 +93,5 @@ public class FileDownloadController {
 				}
 			}
 		};
-
 	}
 }
