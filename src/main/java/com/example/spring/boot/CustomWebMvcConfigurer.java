@@ -1,9 +1,16 @@
 package com.example.spring.boot;
 
+import java.util.concurrent.Callable;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.request.async.CallableProcessingInterceptor;
+import org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -65,6 +72,31 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 		// as well.
 		// See different way of configuring
 		// https://medium.com/swlh/streaming-data-with-spring-boot-restful-web-service-87522511c071
+
+		// register CallableProcessingInterceptor implementation to handle timeout.
+		configurer.registerCallableInterceptors(timeoutCallableProcessingInterceptor());
+
+		WebMvcConfigurer.super.configureAsyncSupport(configurer);
+	}
+
+	/**
+	 * See CallableProcessingInterceptor javadoc for more information and underlying
+	 * working.
+	 * 
+	 * @return CallableProcessingInterceptor implementation that handles Timeout.
+	 */
+	@Bean
+	public CallableProcessingInterceptor timeoutCallableProcessingInterceptor() {
+		return new TimeoutCallableProcessingInterceptor() {
+			@Override
+			public <T> Object handleTimeout(NativeWebRequest request, Callable<T> task) throws Exception {
+				// We Can do anything here
+				HttpServletRequest nativeRequest = request.getNativeRequest(HttpServletRequest.class);
+				log.error("Timeout while async request processing :: {}", nativeRequest.getRequestURI());
+
+				return super.handleTimeout(request, task);
+			}
+		};
 	}
 
 }
